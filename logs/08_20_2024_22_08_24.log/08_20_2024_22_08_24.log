@@ -1,0 +1,39 @@
+[2024-08-20 22:08:24,808] 97 werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.90:5000
+[2024-08-20 22:08:24,808] 97 werkzeug - INFO - [33mPress CTRL+C to quit[0m
+[2024-08-20 22:08:33,826] 97 werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 22:08:33] "GET / HTTP/1.1" 200 -
+[2024-08-20 22:08:40,502] 97 werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 22:08:40] "GET /predictdata HTTP/1.1" 200 -
+[2024-08-20 22:09:06,203] 838 app - ERROR - Exception on /predictdata [POST]
+Traceback (most recent call last):
+  File "E:\Portfolio\Portfolio-Project\MLProject\src\utils.py", line 61, in load_object
+    with open(file_path,'rb') as file_obj:
+FileNotFoundError: [Errno 2] No such file or directory: 'artifacts\\preprocessor.pkl'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\Portfolio\Portfolio-Project\MLProject\src\pipeline\predict_pipeline.py", line 18, in predict
+    preprocessor=load_object(file_path=preprocessor_path)
+  File "E:\Portfolio\Portfolio-Project\MLProject\src\utils.py", line 64, in load_object
+    raise CustomException(e,sys)
+exception.CustomException: Error occured in python script name [E:\Portfolio\Portfolio-Project\MLProject\src\utils.py] line number [61] error message [[Errno 2] No such file or directory: 'artifacts\\preprocessor.pkl']
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "e:\Portfolio\Portfolio-Project\MLProject\venv\lib\site-packages\flask\app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "e:\Portfolio\Portfolio-Project\MLProject\venv\lib\site-packages\flask\app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "e:\Portfolio\Portfolio-Project\MLProject\venv\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "e:\Portfolio\Portfolio-Project\MLProject\venv\lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "app.py", line 43, in predict_datapoint
+    results=predict_pipeline.predict(pred_df)
+  File "E:\Portfolio\Portfolio-Project\MLProject\src\pipeline\predict_pipeline.py", line 23, in predict
+    raise CustomException(e,sys)
+exception.CustomException: Error occured in python script name [E:\Portfolio\Portfolio-Project\MLProject\src\pipeline\predict_pipeline.py] line number [18] error message [Error occured in python script name [E:\Portfolio\Portfolio-Project\MLProject\src\utils.py] line number [61] error message [[Errno 2] No such file or directory: 'artifacts\\preprocessor.pkl']]
+[2024-08-20 22:09:06,209] 97 werkzeug - INFO - 127.0.0.1 - - [20/Aug/2024 22:09:06] "[35m[1mPOST /predictdata HTTP/1.1[0m" 500 -
